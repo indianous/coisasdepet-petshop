@@ -1,7 +1,6 @@
-import React from 'react';
-import Header from '../layout/header';
+import React from 'react'
 
-export default function Cart() {
+export default function Cart (): JSX.Element {
   return (
     <div>
     </div>

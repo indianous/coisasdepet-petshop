@@ -1,9 +1,10 @@
-import '../styles/globals.css';
-import type { AppProps } from 'next/app';
-import 'bootstrap/dist/css/bootstrap.css';
-import Script from '../layout/script';
+import React from 'react'
+import '../styles/globals.css'
+import type { AppProps } from 'next/app'
+import 'bootstrap/dist/css/bootstrap.css'
+import Script from '../layout/script'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App ({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <Script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></Script>

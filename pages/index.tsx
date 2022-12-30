@@ -1,11 +1,10 @@
-import Head from '../layout/head';
-import styles from '../styles/Home.module.css';
-import Header from '../layout/header';
-import Carousel from '../layout/carousel';
-import ListCardProduct from '../layout/list-card-product';
+import React from 'react'
+import Head from '../layout/head'
+// import styles from '../styles/Home.module.css';
+import Carousel from '../layout/carousel'
+import ListCardProduct from '../layout/list-card-product'
 
-export default function Home() {
-
+export default function Home (): JSX.Element {
   // meta data
   const meta = {
     title: 'Lojinha',

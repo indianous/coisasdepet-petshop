@@ -1,9 +1,7 @@
-import React from 'react';
-import Header from '../layout/header';
-import Head from '../layout/head';
+import React from 'react'
+import Head from '../layout/head'
 
-export default function About() {
-
+export default function About (): JSX.Element {
   // meta data
   const meta = {
     title: 'Sobre',
