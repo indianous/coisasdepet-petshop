@@ -14,8 +14,8 @@ export default function CardProduct(props: Props) {
         'Texto',
         'produto-1',
         [
-            'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg',
-            'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg'
+            'https://images.pexels.com/photos/5946087/pexels-photo-5946087.jpeg',
+            'https://images.pexels.com/photos/4032973/pexels-photo-4032973.jpeg'
         ]
     )
   return (

@@ -2,17 +2,22 @@ import React from 'react'
 
 type Props = {
     id: string;
-    imgs?: {url: string, className: string}[];
+    imgs?: string[];
+    className?: string;
 }
 
 export default function Carousel(props: Props) {
-     const imgs = props.imgs || [
-        {url: 'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg', className: 'carousel-item active'},
-        {url: 'https://images.pexels.com/photos/4439425/pexels-photo-4439425.jpeg', className: 'carousel-item'},
-    ]
+    const images = props.imgs || ['https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg', 'https://images.pexels.com/photos/4439425/pexels-photo-4439425.jpeg'];
+    const imgs = images.map(
+        (image) => {
+            return {url: image, className: 'carousel-item'}
+        }
+    )
+    imgs[0].className = imgs[0].className + " active"
     const id = props.id;
+    
   return (
-    <div id={id} className="carousel slide">
+    <div id={id} className={`carousel slide ${props.className}`}>
         <div className="carousel-inner">
             {imgs.map(
                 (img, index) => {

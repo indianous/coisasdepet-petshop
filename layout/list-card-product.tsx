@@ -10,44 +10,17 @@ type Props = {
 
 export default function ListCardProduct(props: Props) {
   const title = props.title;
-  const products = props.products || [
-    new Product(
-      'Produto 1',
-      1.50,
-      'Texto',
-      'produto-1',
-      [
-          'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg',
-          'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg'
-      ]),
-      new Product(
-        'Produto 1',
-        1.50,
-        'Texto',
-        'produto-1',
-        [
-            'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg',
-            'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg'
-        ]),
-        new Product(
-          'Produto 1',
-          1.50,
-          'Texto',
-          'produto-1',
-          [
-              'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg',
-              'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg'
-          ]),
-          new Product(
-            'Produto 1',
-            1.50,
-            'Texto',
-            'produto-1',
-            [
-                'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg',
-                'https://images.pexels.com/photos/374918/pexels-photo-374918.jpeg'
-            ]),
-  ]
+  const product = new Product(
+    'Produto 1',
+    1.50,
+    'Texto',
+    'produto-1',
+    [
+        'https://images.pexels.com/photos/5946087/pexels-photo-5946087.jpeg',
+        'https://images.pexels.com/photos/4032973/pexels-photo-4032973.jpeg'
+    ]
+)
+  const products = props.products || [product, product, product, product, ]
   return (
     <>
       <p className='h3 m-2'>{title}</p>

@@ -9,7 +9,7 @@ export class Product {
         price: number,
         description: string,
         slug: string,
-        images: string[],
+        images: string[]
         ) {
             this.name = name;
             this.price = price;
