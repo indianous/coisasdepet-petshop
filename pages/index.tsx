@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from '../layout/head'
 // import styles from '../styles/Home.module.css';
-import Carousel from '../layout/carousel'
 import ListCardProduct from '../layout/list-card-product'
 
 export default function Home (): JSX.Element {
@@ -10,7 +9,6 @@ export default function Home (): JSX.Element {
     title: 'Lojinha',
     description: ''
   }
-
   return (
     <>
       <Head>
@@ -21,7 +19,7 @@ export default function Home (): JSX.Element {
       </Head>
       <div>
         <main className="container">
-          <Carousel id='banner1'/>
+          {/* <Carousel imgs={} id='banner1'/> */}
           <ListCardProduct/>
         </main>
       </div>

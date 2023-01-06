@@ -1,7 +1,7 @@
 import React from 'react'
 import { Product } from '../../interface/Product'
 import Head from '../../layout/head'
-import Carousel from '../../layout/carousel'
+import Gallery from '../../layout/gallery'
 import { GetStaticPaths, GetStaticProps } from 'next'
 
 interface Props {
@@ -38,16 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 export default function Product1 (props: Props): JSX.Element {
-  const product = new Product(
-    'Produto 1',
-    1.50,
-    'Teste',
-    'produto-1',
-    [
-      'https://images.pexels.com/photos/5946087/pexels-photo-5946087.jpeg',
-      'https://images.pexels.com/photos/4032973/pexels-photo-4032973.jpeg'
-    ]
-  )
+  const product = new Product()
   // meta data
   const meta = {
     title: product.name,
@@ -64,17 +55,17 @@ export default function Product1 (props: Props): JSX.Element {
       </Head>
       <main>
         <div className='container d-flex flex-column'>
-          <div className='d-flex flex-column flex-md-row'>
-            <div style={ { maxWidth: '400px' } }>
-              <Carousel id='galery-carousel' imgs={product.images} className='rounded'/>
+          <div className='d-flex flex-column flex-md-row row'>
+            <div className='col-md-4'>
+              <Gallery id='galery-product' imgs={product.images} className='rounded'/>
             </div>
-            <div className='card w-100'>
+            <div className='card col-md-8 p-0'>
               <div className='card-header'>
                 <h1 className='card-title'>{product.name}</h1>
               </div>
               <div className='card-body d-flex flex-column justify-content-evenly'>
                 <div className='m-2'>
-                  <span>R$ {product.price}</span>
+                  <span className='h3'>R$ {product.price}</span>
                 </div>
                 <div className='d-flex align-items-center'>
                   <div className='me-2'>
@@ -84,20 +75,18 @@ export default function Product1 (props: Props): JSX.Element {
                     <button className='input-group-text'>
                       <span>-</span>
                     </button>
-                    <input type='number' name='quantity' placeholder='1' min='1' max='100' id='quantity' className='form-control' />
+                    <input type='number' name='quantity' placeholder='1' min='1' max='100' id='quantity' className='btn border' />
                     <button className='input-group-text'>
                       <span>+</span>
                     </button>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className='card'>
-          <div className='card-body'>
+              <div className="card-body">
                 <h3 className='card-title'>Descrição</h3>
                 <p className='card-text'>{product.description}</p>
               </div>
+            </div>
           </div>
         </div>
       </main>
