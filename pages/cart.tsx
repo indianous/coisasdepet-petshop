@@ -21,30 +21,61 @@ export function Payment (): JSX.Element {
   )
 }
 
+interface CartItemProps {
+  imgUrl: string
+  imgAlt: string
+  name: string
+  price: string
+  quantity: number
+}
+
+export function CartItem (props: CartItemProps): JSX.Element {
+  const item = {
+    imgUrl: props.imgUrl,
+    imgAlt: props.imgAlt,
+    name: props.name,
+    price: props.price,
+    quantity: props.quantity
+  }
+  return (
+    <li className="list-group-item d-flex align-items-center justify-content-around">
+      <img src={item.imgUrl} className='w-25' alt="..." />
+      <div className='w-75 ps-2'>
+      <span>{item.name}</span>
+      <div className='d-flex justify-content-between'>
+        <span className=''>{item.price}</span>
+        <button className="btn badge bg-primary">{item.quantity} un</button>
+      </div>
+      </div>
+      <button className="btn badge position-absolute start-100 top-0 translate-middle rounded-pill bg-danger">X</button>
+    </li>
+  )
+}
+
+// interface ViewProps {
+//   listProduct
+// }
+
 export function View (): JSX.Element {
-  const listItem = {
-    url: 'https://images.pexels.com/photos/13779112/pexels-photo-13779112.jpeg',
-    title: 'Fosfiber',
-    price: 'R$ 120,00'
+  const item = {
+    imgUrl: 'https://images.pexels.com/photos/13779112/pexels-photo-13779112.jpeg',
+    imgAlt: 'Caps Fosfiber',
+    name: 'Fosfiber',
+    price: 'R$ 120,00',
+    quantity: 1
   }
   return (
     <div className='card'>
       <div className="card-header">
-        <h3 className='card-title'>Visualização</h3>
+        <h3 className='card-title'>Carinho</h3>
       </div>
       <ul className="list-group">
-        <li className="list-group-item d-flex align-items-center justify-content-around">
-          <img src={listItem.url} className='w-25' alt="..." />
-          <div className=''>
-          <h5>{listItem.title}</h5>
-          <div className='d-flex align-items-center'>
-            <span className='d-block me-1'>{listItem.price}</span>
-            <input className='mx-1'type="number" min='1' max='100'/>
-            <button type="button" className="btn-close ms-1" aria-label="Close"></button>
-          </div>
-          </div>
-        </li>
+        <CartItem imgUrl={item.imgUrl} imgAlt={item.imgAlt} name={item.name} price={item.price} quantity={item.quantity}/>
+        <CartItem imgUrl={item.imgUrl} imgAlt={item.imgAlt} name={item.name} price={item.price} quantity={item.quantity}/>
       </ul>
+      <div className="card-footer">
+        <span>Total: R$ 120,00</span>
+      </div>
     </div>
   )
 }
