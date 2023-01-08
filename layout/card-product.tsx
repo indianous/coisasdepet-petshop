@@ -10,7 +10,7 @@ interface Props {
 export default function CardProduct (props: Props): JSX.Element {
   const product = props.product
   return (
-    <div class="card">
+    <div className="card">
       <div className="row g-0 p-2">
         <div className="col-4 p-3">
           <img src={product.images[0]} alt="..." className="img-fluid">
