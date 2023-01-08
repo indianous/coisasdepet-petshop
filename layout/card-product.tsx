@@ -19,8 +19,8 @@ export default function CardProduct (props: Props): JSX.Element {
           <div className="border-bottom">
             <h3>{product.name}</h3>
           </div>
-          <div className="display-5">
-            Por: R&#36;{product.price}
+          <div>
+            <span>Por: R&#36;{product.price}</span>
           </div>
         </div>
         <div className="d-flex flex-column btn-group-vertical">
