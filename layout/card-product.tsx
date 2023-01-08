@@ -15,11 +15,11 @@ export default function CardProduct (props: Props): JSX.Element {
         <div className="col-4 p-3">
           <img src={product.images[0]} alt="..." className="img-fluid"/>
         </div>
-        <div className="col-8 ps-2 d-flex flex-column justify-content-around">
+        <div className="col-8 ps-2 d-flex flex-column">
           <div className="border-bottom">
             <h3>{product.name}</h3>
           </div>
-          <div>
+          <div className="pt-5">
             <span>Por: R&#36;{product.price}</span>
           </div>
         </div>
