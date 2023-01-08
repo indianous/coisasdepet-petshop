@@ -13,7 +13,7 @@ export default function CardProduct (props: Props): JSX.Element {
     <div className="card">
       <div className="row g-0 p-2">
         <div className="col-4 p-3">
-          <img src={product.images[0]} alt="..." className="img-fluid">
+          <img src={product.images[0]} alt="..." className="img-fluid"/>
         </div>
         <div className="col-8 ps-2 d-flex flex-column justify-content-around">
           <div className="border-bottom">
