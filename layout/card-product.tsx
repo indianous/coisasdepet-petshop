@@ -10,14 +10,24 @@ interface Props {
 export default function CardProduct (props: Props): JSX.Element {
   const product = props.product
   return (
-    <div className={`card ${props.className}`}>
-        <img src={product.images[0]} className="card-img-top" alt="..."/>
-        <div className="card-body">
-            <h5 className="card-title">{product.name}</h5>
-            <p className="card-text fs-4">{product.description}</p>
-            <p className="card-text fs-6">R&#36;{product.price}</p>
-            <Link href={`product/${product.slug}`} className="btn btn-primary stretched-link">Veja Mais...</Link>
+    <div class="card">
+      <div class="row g-0 p-2">
+        <div class="col-4 p-3">
+          <img src={product.images[0]} alt="..." class="img-fluid">
         </div>
-    </div>
+        <div class="col-8 ps-2 d-flex flex-column justify-content-around">
+          <div class="border-bottom">
+            <h3>{product.name}</h3>
+          </div>
+          <div class="display-5">
+            Por: R&#36;{product.price}
+          </div>
+        </div>
+        <div class="d-flex flex-column btn-group-vertical">
+          <Link href={`product/${product.slug}`} className="btn bg-primary">Comprar</Link>
+          <button class="btn bg-success">Adicionar ao carrinho</button>
+        </div>
+      </div>
+  </div>
   )
 }
