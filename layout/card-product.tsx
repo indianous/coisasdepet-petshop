@@ -20,7 +20,7 @@ export default function CardProduct (props: Props): JSX.Element {
             <h3>{product.name}</h3>
           </div>
           <div className="pt-5">
-            <span>Por: R&#36;{product.price}</span>
+            <span>Por: <span className="h5">R&#36;{product.price}</span></span>
           </div>
         </div>
         <div className="d-flex flex-column btn-group-vertical">
