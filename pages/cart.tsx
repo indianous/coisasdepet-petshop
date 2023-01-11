@@ -1,11 +1,75 @@
 import React from 'react'
 import Head from '../layout/head'
+import Link from '../layout/link'
 
-export function Shipping (): JSX.Element {
+// Interfaces
+
+interface ShippingItemProps {
+  radioId: string
+  name: string
+  price: string
+  time: string
+}
+
+interface ShippingProps {
+  items: Array<{ name: string, price: number, time: string }>
+}
+
+interface ViewProps {
+  items: Array<{ imgUrl: string, imgAlt: string, name: string, price: string, quantity: number }>
+}
+
+interface CartItemProps {
+  imgUrl: string
+  imgAlt: string
+  name: string
+  price: string
+  quantity: number
+}
+
+interface ViewItemProps {
+  imgUrl: string
+  imgAlt: string
+  name: string
+  price: string
+  quantity: number
+}
+
+// Components
+
+export function Shipping (props: ShippingProps): JSX.Element {
+  const shippingItems = props.items
   return (
     <div className="card">
+      <div className="card-header">
+        <h3 className="card-title">Entrega</h3>
+      </div>
       <div className="card-body">
-        <h3 className="card-title">Shipping</h3>
+        <p className="card-text">
+          Entregar: Endereço
+        </p>
+        <Link href='#'>alterar endereco</Link>
+      </div>
+      <ul className="list-group">
+        {
+          shippingItems.map(
+            (item, index) => {
+              const radioId = `radioshipping${index}`
+              return (
+                <ShippingItem
+                  key={index}
+                  radioId={radioId}
+                  name={item.name}
+                  price={`R$ ${item.price}`}
+                  time={item.time}
+                />
+              )
+            }
+          )
+        }
+      </ul>
+      <div className="card-footer">
+        Total: R$ 20,00
       </div>
     </div>
   )
@@ -21,12 +85,22 @@ export function Payment (): JSX.Element {
   )
 }
 
-interface CartItemProps {
-  imgUrl: string
-  imgAlt: string
-  name: string
-  price: string
-  quantity: number
+export function ShippingItem (props: ShippingItemProps): JSX.Element {
+  const radioId = props.radioId
+  const name = props.name
+  const price = props.price
+  const time = props.time
+  return (
+
+    <li className="list-group-item">
+      <input type="radio" className="form-check-input" id={radioId} />
+      <label htmlFor={radioId} className="form-check-label ps-2">
+        <div><span>{name}</span></div>
+        <div><span>{price}</span></div>
+        <div><span>{time}</span></div>
+      </label>
+    </li>
+  )
 }
 
 export function CartItem (props: CartItemProps): JSX.Element {
@@ -38,40 +112,73 @@ export function CartItem (props: CartItemProps): JSX.Element {
     quantity: props.quantity
   }
   return (
-    <li className="list-group-item d-flex align-items-center justify-content-around">
-      <img src={item.imgUrl} className='w-25' alt="..." />
-      <div className='w-75 ps-2'>
-      <span>{item.name}</span>
-      <div className='d-flex justify-content-between'>
-        <span className=''>{item.price}</span>
-        <button className="btn badge bg-primary">{item.quantity} un</button>
-      </div>
+    <li className="list-group-item">
+      <div className="row">
+        <div className="col-4">
+          <img src={item.imgUrl} className='img-fluid' alt="..." />
+        </div>
+        <div className="col-8">
+        <span>{item.name}</span>
+        <div className='d-flex justify-content-between'>
+          <span className=''>{item.price}</span>
+          <button className="btn badge bg-primary">{item.quantity} un</button>
+        </div>
+        </div>
       </div>
       <button className="btn badge position-absolute start-100 top-0 translate-middle rounded-pill bg-danger">X</button>
     </li>
   )
 }
 
-// interface ViewProps {
-//   listProduct
-// }
+export function ViewItem (props: ViewItemProps): JSX.Element {
+  const imgUrl = props.imgUrl
+  const imgAlt = props.imgAlt
+  const name = props.name
+  const price = props.price
+  const quantity = props.quantity
+  return (
+    <li className="list-group-item">
+      <div className="row">
+        <div className="col-4">
+          <img src={imgUrl} alt={imgAlt} className="img-fluid" />
+        </div>
+        <div className="col-8">
+          <div><span className="h5">{name}</span></div>
+          <div>
+            <div><span>{price}</span></div>
+            <button className="btn badge bg-primary">{quantity} un</button>
+          </div>
+        </div>
+      </div>
+      <button className="btn badge position-absolute start-100 top-0 translate-middle rounded-pill bg-danger">X</button>
+    </li>
+  )
+}
 
-export function View (): JSX.Element {
-  const item = {
-    imgUrl: 'https://images.pexels.com/photos/13779112/pexels-photo-13779112.jpeg',
-    imgAlt: 'Caps Fosfiber',
-    name: 'Fosfiber',
-    price: 'R$ 120,00',
-    quantity: 1
-  }
+export function View (props: ViewProps): JSX.Element {
+  const items = props.items
   return (
     <div className='card'>
       <div className="card-header">
-        <h3 className='card-title'>Carinho</h3>
+        <h3 className='card-title'>Carrinho</h3>
       </div>
       <ul className="list-group">
-        <CartItem imgUrl={item.imgUrl} imgAlt={item.imgAlt} name={item.name} price={item.price} quantity={item.quantity}/>
-        <CartItem imgUrl={item.imgUrl} imgAlt={item.imgAlt} name={item.name} price={item.price} quantity={item.quantity}/>
+        {
+          items.map(
+            (item, index) => {
+              return (
+                <ViewItem
+                  key={index}
+                  imgUrl={item.imgUrl}
+                  imgAlt={item.imgAlt}
+                  name={item.name}
+                  price={item.price}
+                  quantity={item.quantity}
+                />
+              )
+            }
+          )
+        }
       </ul>
       <div className="card-footer">
         <span>Total: R$ 120,00</span>
@@ -81,6 +188,14 @@ export function View (): JSX.Element {
 }
 
 export default function Cart (): JSX.Element {
+  const viewItems = [
+    { imgUrl: 'https://images.pexels.com/photos/13779112/pexels-photo-13779112.jpeg', imgAlt: 'Caps Fosfiber', name: 'Fosfiber', price: 'R$ 120,00', quantity: 1 }
+  ]
+  const shippingItems = [
+    { name: 'Retirada no local', price: 0.00, time: '1 dia' },
+    { name: 'Sedex', price: 18.90, time: 'De 7 a 15 dias' },
+    { name: 'Transportadora', price: 27.90, time: 'De 1 a 3 dias' }
+  ]
   // const cart = {
   //   products: [
   //     {
@@ -133,8 +248,8 @@ export default function Cart (): JSX.Element {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='container'>
-        <View/>
-        <Shipping/>
+        <View items={viewItems}/>
+        <Shipping items={shippingItems}/>
         <Payment/>
       </main>
     </>
