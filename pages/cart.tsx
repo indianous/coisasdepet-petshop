@@ -9,10 +9,11 @@ interface ShippingItemProps {
   name: string
   price: string
   time: string
+  id: string
 }
 
 interface ShippingProps {
-  items: Array<{ name: string, price: number, time: string }>
+  items: Array<{ name: string, price: number, time: string, id: string }>
 }
 
 interface ViewProps {
@@ -62,6 +63,7 @@ export function Shipping (props: ShippingProps): JSX.Element {
                   name={item.name}
                   price={`R$ ${item.price}`}
                   time={item.time}
+                  id={item.id}
                 />
               )
             }
@@ -77,9 +79,31 @@ export function Shipping (props: ShippingProps): JSX.Element {
 
 export function Payment (): JSX.Element {
   return (
-    <div className="card">
+  <div className="card">
+      <div className="card-header">
+        <h3 className="card-title">
+          Pagamento
+        </h3>
+      </div>
       <div className="card-body">
-        <h3 className="card-title">Payment</h3>
+        <div className='d-flex flex-column'>
+          <label htmlFor="numberCard">Número do Cartão</label>
+          <input type="text" name="numberCard" id="numberCard" />
+        </div>
+        <div className='d-flex flex-column'>
+          <label htmlFor="numberCvv">CVV</label>
+          <input type="text" name="numberCvv" id="numberCvv" />
+        </div>
+        <div className='d-flex flex-column'>
+          <label htmlFor="expiry">Validade</label>
+          <input type="text" name="expiry" id="expiry" />
+        </div>
+        <input type="submit" value="Pagar" />
+      </div>
+      <div className="card-footer">
+        <span className="card-text">
+          Total: R$ 120,00
+        </span>
       </div>
     </div>
   )
@@ -90,10 +114,11 @@ export function ShippingItem (props: ShippingItemProps): JSX.Element {
   const name = props.name
   const price = props.price
   const time = props.time
+  const id = props.id
   return (
 
     <li className="list-group-item">
-      <input type="radio" className="form-check-input" id={radioId} />
+      <input type="radio" className="form-check-input" name="shipping" id={radioId} value={id}/>
       <label htmlFor={radioId} className="form-check-label ps-2">
         <div><span>{name}</span></div>
         <div><span>{price}</span></div>
@@ -192,9 +217,9 @@ export default function Cart (): JSX.Element {
     { imgUrl: 'https://images.pexels.com/photos/13779112/pexels-photo-13779112.jpeg', imgAlt: 'Caps Fosfiber', name: 'Fosfiber', price: 'R$ 120,00', quantity: 1 }
   ]
   const shippingItems = [
-    { name: 'Retirada no local', price: 0.00, time: '1 dia' },
-    { name: 'Sedex', price: 18.90, time: 'De 7 a 15 dias' },
-    { name: 'Transportadora', price: 27.90, time: 'De 1 a 3 dias' }
+    { name: 'Retirada no local', price: 0.00, time: '1 dia', id: '1' },
+    { name: 'Sedex', price: 18.90, time: 'De 7 a 15 dias', id: '2' },
+    { name: 'Transportadora', price: 27.90, time: 'De 1 a 3 dias', id: '3' }
   ]
   // const cart = {
   //   products: [
@@ -248,9 +273,11 @@ export default function Cart (): JSX.Element {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='container'>
-        <View items={viewItems}/>
-        <Shipping items={shippingItems}/>
-        <Payment/>
+        <form action="">
+          <View items={viewItems}/>
+          <Shipping items={shippingItems}/>
+          <Payment/>
+        </form>
       </main>
     </>
   )
