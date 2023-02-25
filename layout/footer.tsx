@@ -1,9 +1,9 @@
-import React from 'react';
-import Nav from './nav';
+import React from 'react'
+import Nav from './nav'
 
-type Props = {}
+interface Props {}
 
-export default function Footer(props: Props) {
+export default function Footer (props: Props): JSX.Element {
   return (
     <footer className="container py-3 my-4">
       <Nav className='justify-content-center border-bottom pb-3 mb-3'/>
